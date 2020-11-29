@@ -82,8 +82,8 @@ let Input = MentorDetails.filter((data)=> data.MentorName === req.body.MentorNam
         res.sendFile(__dirname + "/public/failure.html")   
     }
 })
-.get("*",(req, res)=>{
-    res.send("Not Found")
+.get("*", (req, res)=>{                                             // Default route                    
+    res.sendFile(__dirname+"/public/notFound.html")
 })
 .listen(process.env.PORT)
 
