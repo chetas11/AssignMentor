@@ -45,8 +45,9 @@ app
 .post("/assignSingleMentor", (req, res)=>{                  //Update/Assign Mentor to Students 
     let student = req.body.StudentName;
     let mentor = req.body.MentorName;
-    let Input = MentorDetails.filter((data)=> data.MentorName === mentor)
-    if(Input.length>0){
+    let Input1 = MentorDetails.filter((data)=> data.MentorName === mentor)
+    let Input2 = AllData.filter((data)=> data.Name === student)
+    if(Input1.length>0 && Input2.length > 0){
         AllData.forEach((data) => {
                 if(data.Name === student){
                     data.MentorName = mentor;
@@ -55,7 +56,7 @@ app
             })
         
     }
-    if(Input.length===0){
+    if(Input1.length === 0 || Input2.length === 0){
         res.sendFile(__dirname + "/public/failure.html") 
     }
 })
