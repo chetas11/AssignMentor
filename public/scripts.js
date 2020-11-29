@@ -11,6 +11,8 @@ const assignSpecificMentor = document.getElementById("assign-specificMentor");
 const checkData = document.getElementById("checkData");
 const getMentors = document.getElementById("getMentors");
 
+// Togglers Logic to unhide the section
+
 checkData.addEventListener("click",()=>{
     var x = location.pathname+"data";
     location.href = x
