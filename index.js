@@ -11,13 +11,11 @@ app
 .get("/", (req, res)=>{                     
     res.sendFile(__dirname +"/index.html")
 })
-.get("/check", (req, res)=>{                              //Fetches All Students data
-    res.status(200).json({
-        data:AllData
-    })
-})
 .get("/data", (req, res)=>{                              //Fetches All Mentor
     res.render("trail", {data: AllData} ) 
+})
+.get("/mentors", (req, res)=>{                           //Fetches all raw data of Mentor
+    res.render("mentors", {data: MentorDetails} ) 
 })
 .post("/SpecificMentor",(req,res)=>{                     //Fetches Students under one Mentor
     let mentor = req.body.MentorName;
@@ -73,6 +71,9 @@ let Input = AllData.filter((data)=> data.Name === req.body.Name)
     }
 
 })
+.get("/mentors", (req, res)=>{                              //Fetches all the Mentor
+    res.render("mentors", {data: MentorDetails} ) 
+})
 .post("/createMentor", (req, res)=>{                        //Create a new Mentor 
 let Input = MentorDetails.filter((data)=> data.MentorName === req.body.MentorName)
     if(Input.length===0){
@@ -83,7 +84,7 @@ let Input = MentorDetails.filter((data)=> data.MentorName === req.body.MentorNam
         res.sendFile(__dirname + "/public/failure.html")   
     }
 })
-.listen(process.env.PORT)
+.listen(8000)
 
 
 
