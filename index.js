@@ -85,8 +85,7 @@ let Input = MentorDetails.filter((data)=> data.MentorName === req.body.MentorNam
 .get("*",(req, res)=>{
     res.send("Not Found")
 })
-.listen(3000)
-// .listen(process.env.PORT)
+.listen(process.env.PORT)
 
 
 
