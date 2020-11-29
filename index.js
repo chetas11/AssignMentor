@@ -7,14 +7,14 @@ const MentorDetails = require("./MentorDetails");
 app.set('view engine', 'ejs');
 app
 .use(express.static(__dirname + '/public'))
-.use(bodyParser.urlencoded({extended: true}))
+.use(bodyParser.urlencoded({extended: true}))           //Home Page
 .get("/", (req, res)=>{                     
     res.sendFile(__dirname +"/index.html")
 })
-.get("/data", (req, res)=>{                              //Fetches All Mentor
-    res.render("trail", {data: AllData} ) 
+.get("/data", (req, res)=>{                              //Fetches All Students data
+    res.render("students", {data: AllData} ) 
 })
-.get("/mentors", (req, res)=>{                           //Fetches all raw data of Mentor
+.get("/mentors", (req, res)=>{                           //Fetches All Mentor data
     res.render("mentors", {data: MentorDetails} ) 
 })
 .post("/SpecificMentor",(req,res)=>{                     //Fetches Students under one Mentor
@@ -42,7 +42,7 @@ app
         res.sendFile(__dirname + "/public/failure.html") 
     }    
 })
-.post("/assignSingleMentor", (req, res)=>{                  //Update/Assign Mentor to Students 
+.post("/assignSingleMentor", (req, res)=>{                  // Update/Assign Mentor to Students 
     let student = req.body.StudentName;
     let mentor = req.body.MentorName;
     let Input1 = MentorDetails.filter((data)=> data.MentorName === mentor)
@@ -72,9 +72,6 @@ let Input = AllData.filter((data)=> data.Name === req.body.Name)
     }
 
 })
-.get("/mentors", (req, res)=>{                              //Fetches all the Mentor
-    res.render("mentors", {data: MentorDetails} ) 
-})
 .post("/createMentor", (req, res)=>{                        //Create a new Mentor 
 let Input = MentorDetails.filter((data)=> data.MentorName === req.body.MentorName)
     if(Input.length===0){
@@ -85,7 +82,11 @@ let Input = MentorDetails.filter((data)=> data.MentorName === req.body.MentorNam
         res.sendFile(__dirname + "/public/failure.html")   
     }
 })
-.listen(process.env.PORT)
+.get("*",(req, res)=>{
+    res.send("Not Found")
+})
+.listen(3000)
+// .listen(process.env.PORT)
 
 
 

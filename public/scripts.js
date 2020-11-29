@@ -21,9 +21,6 @@ getMentors.addEventListener("click",()=>{
     location.href = x
 })
 
-
-
-
 StudentDivToggler.addEventListener("click", ()=>{
     if(StudentDiv.style.display === "none"){
         StudentDiv.style.display = "block"

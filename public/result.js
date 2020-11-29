@@ -1,3 +1,5 @@
+// back to home and check data button logic
+
 const BacktoHome = document.getElementById("BacktoHome");
 BacktoHome.addEventListener("click",()=>{
     location.href = "/"
